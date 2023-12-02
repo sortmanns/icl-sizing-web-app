@@ -2,10 +2,18 @@
 import streamlit as st
 import numpy as np
 import uuid
+from snowflake.snowpark.session import _get_active_sessions
 from snowflake.snowpark.types import StringType, DoubleType, IntegerType, StructField, StructType
 from snowflake.snowpark import functions as F
 
 
+try:
+    session.close()
+except Exception as e:
+    pass
+# Connect to Snowflake
+conn = st.connection("snowflake")
+session = conn.session()
 
 st.title('ICL Sizing Input Form')
 
@@ -45,9 +53,6 @@ with col2:
 # Customizing the Submit button inside st.form
 with st.form(key='my_form'):
     submit_button = st.form_submit_button('Submit', help='Click to submit the form')
-    # Connect to Snowflake
-    conn = st.connection("snowflake")
-    session = conn.session()
 
     # Check if the form is submitted
     if submit_button:
@@ -101,15 +106,16 @@ with st.form(key='my_form'):
         df = session.createDataFrame(data=[form_data], schema=schema)
 
 
+        @F.udf(session=_get_active_sessions().pop())
         def _random_id() -> str:
             id = uuid.uuid4()
             return str(id)
 
 
-        id_udf = F.udf(_random_id, return_type=StringType())
+        # id_udf = F.udf(_random_id, return_type=StringType())
         df = df.withColumn(
             "id",
-            id_udf(),
+            _random_id(),
         )
 
         df.write.mode("append").save_as_table('app_ingress.input_data')
