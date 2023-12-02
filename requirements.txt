@@ -1,4 +1,4 @@
-typer== "*"
-numpy=="*"
-streamlit=="*"
-snowflake-snowpark-python=="*"
+typer
+numpy
+streamlit
+snowflake-snowpark-python
