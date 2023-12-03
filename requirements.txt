@@ -2,3 +2,4 @@ typer
 numpy
 streamlit
 snowflake-snowpark-python
+streamlit_authenticator
