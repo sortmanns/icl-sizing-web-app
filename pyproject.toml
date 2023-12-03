@@ -31,7 +31,9 @@ classifiers = [ # ToDo: Modify according to your needs!
 # direct dependencies of this package, installed when users `pip install icl-sizing-web-app` later.
 dependencies = [ # ToDo: Modify according to your needs!
     "typer",
-    # "numpy",
+    "numpy",
+    "streamlit",
+    "snowflake-snowpark-python"
     # "matplotlib",
     # "seaborn",
 ]
