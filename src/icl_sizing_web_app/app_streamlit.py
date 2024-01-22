@@ -186,7 +186,7 @@ if authentication_status:
                 df["vault"]
             )
 
-            df.write.mode("append").save_as_table('model_results.model_v1')
+            result_df.write.mode("append").save_as_table('model_results.model_v1')
 
             # Display the result in the app
             st.write('Sum of values per row:')
