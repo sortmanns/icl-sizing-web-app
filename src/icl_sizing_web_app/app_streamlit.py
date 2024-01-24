@@ -165,7 +165,7 @@ if authentication_status:
                     "sts_cbid_implS") - 0.63335823 * F.col("sts_cbid_lr")
             )
 
-            result_df = session.createDataFrame(data=[form_data], schema=schema)
+            result_df = session.createDataFrame()
 
             result_df = result_df.withColumn(
                 "id",
