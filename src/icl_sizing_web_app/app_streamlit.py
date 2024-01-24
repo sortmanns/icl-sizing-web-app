@@ -165,7 +165,7 @@ if authentication_status:
                     "sts_cbid_implS") - 0.63335823 * F.col("sts_cbid_lr")
             )
 
-            result_df = df.select('id', 'sts_cbid_implS', 'sts_cbid_lr', 'vault', F.current_date().alias("current_date"))
+            result_df = df.select('id', 'sts_cbid_implS', 'sts_cbid_lr', 'vault', F.current_date().alias("created_at"))
             result_df.write.mode("append").save_as_table('model_results.model_v1')
 
             # Display the result in the app
