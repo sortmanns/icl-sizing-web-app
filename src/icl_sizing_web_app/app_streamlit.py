@@ -9,7 +9,6 @@ from snowflake.snowpark import functions as F
 import yaml
 from yaml.loader import SafeLoader
 import os
-import snowflake.snowpark.DataFrame
 
 try:
     session.close()
