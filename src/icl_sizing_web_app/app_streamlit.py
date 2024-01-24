@@ -9,6 +9,7 @@ from snowflake.snowpark import functions as F
 import yaml
 from yaml.loader import SafeLoader
 import os
+import snowflake.snowpark.DataFrame
 
 try:
     session.close()
@@ -165,27 +166,7 @@ if authentication_status:
                     "sts_cbid_implS") - 0.63335823 * F.col("sts_cbid_lr")
             )
 
-            result_df = session.createDataFrame()
-
-            result_df = result_df.withColumn(
-                "id",
-                df["id"]
-            )
-
-            result_df = result_df.withColumn(
-                "sts_cbid_implS",
-                df["sts_cbid_implS"]
-            )
-            result_df = result_df.withColumn(
-                "sts_cbid_lr",
-                df["sts_cbid_lr"]
-            )
-
-            result_df = result_df.withColumn(
-                "vault",
-                df["vault"]
-            )
-
+            result_df = df.select('id', 'sts_cbid_implS', 'sts_cbid_lr', 'vault', F.current_date().alias("current_date"))
             result_df.write.mode("append").save_as_table('model_results.model_v1')
 
             # Display the result in the app
