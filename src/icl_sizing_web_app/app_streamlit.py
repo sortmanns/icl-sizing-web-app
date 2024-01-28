@@ -170,7 +170,7 @@ if authentication_status:
 
             # Display the result in the app
             st.write('Sum of values per row:')
-            st.dataframe(df.select("vault"))
+            st.dataframe(df.select("id", "vault"))
             st.success('Data successfully submitted to Snowflake!')
 
 elif authentication_status == False:
