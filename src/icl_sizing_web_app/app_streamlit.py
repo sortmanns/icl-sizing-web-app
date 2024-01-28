@@ -11,7 +11,7 @@ from yaml.loader import SafeLoader
 import os
 
 try:
-    session.close()
+    session.close()  # type: ignore
 except Exception as e:
     pass
 
@@ -170,7 +170,7 @@ if authentication_status:
 
             # Display the result in the app
             st.write('Sum of values per row:')
-            st.dataframe(df.select("id", "vault"))
+            st.dataframe(df.select("id", "vault", F.current_date().alias("created_at")))
             st.success('Data successfully submitted to Snowflake!')
 
 elif authentication_status == False:
