@@ -3,3 +3,4 @@ numpy
 streamlit
 snowflake-snowpark-python
 streamlit_authenticator
+propelauth-py
