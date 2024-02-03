@@ -6,8 +6,8 @@ Notion-API: https://developers.notion.com/reference/intro
 from importlib.metadata import PackageNotFoundError, version
 
 try:
-    __version__ = version('icl-sizing-web-app')
+    __version__ = version("icl-sizing-web-app")
 except PackageNotFoundError:  # pragma: no cover
-    __version__ = 'unknown'
+    __version__ = "unknown"
 finally:
     del version, PackageNotFoundError
