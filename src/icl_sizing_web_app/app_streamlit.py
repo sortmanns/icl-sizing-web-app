@@ -11,7 +11,7 @@ from snowflake.snowpark.session import _get_active_sessions
 from snowflake.snowpark.types import (DoubleType, IntegerType, StringType,
                                       StructField, StructType)
 
-from .propelauth import auth
+from src.icl_sizing_web_app.propelauth import auth
 
 user = auth.get_user()
 if user is None:
